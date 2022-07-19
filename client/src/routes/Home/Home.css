@@ -1,0 +1,82 @@
+.handshake-icon{
+    font-size: 30px;
+    color: var(--light-text-color2);
+}
+
+.handshake-icon:hover{
+    cursor: pointer;
+}
+
+.show-collaborate{
+    background-color: var(--foreground-color);
+    padding: 5px 10px;
+    border-radius: 3px;
+    display: none;
+    position: absolute;
+    right: 50%;
+}
+
+.handshake-icon:hover + .show-collaborate{
+    display: block;
+}
+
+.home-container{
+    margin-top: 50px;
+}
+
+.documents{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 30px;
+}
+
+.document-card{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--dark-main-color);
+    padding: 10px;
+    transition-duration: .3s;
+}
+
+.document-card:hover{
+    background-color: #222;    
+}
+
+.document-card .right{
+    position: relative;
+}
+
+.document-card .date{
+    color: var(--light-text-color);
+}
+
+.new-doc-btn{
+    font-size: 50px;
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+    border-radius: 50%;
+    background-color: var(--foreground-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    transition-duration: .4s;
+}
+
+.new-doc-btn:hover{
+    cursor: pointer;
+    background-color: #555;
+}
+
+.new-doc-btn span{
+    margin-bottom: 10px;
+}
+
+.hide-btn{
+    opacity: 0;
+    bottom: -73px;
+}
