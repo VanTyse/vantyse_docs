@@ -1,3 +1,51 @@
+/* Documents */
+.home-container{
+    margin-top: 50px;
+}
+
+.documents{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 30px;
+}
+
+/* Default Message */
+.default-message{
+    height: calc(100vh - 200px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    max-width: 800px;
+}
+
+.default-message p{
+    color: var(--main-color);
+    font-size: 16px;
+    padding: 0;
+}
+
+.default-message h1{
+    margin-top: 0;
+    padding: 0;
+}
+
+.default-message h2{
+    color: var(--light-text-color);
+    margin-top: 10px;
+}
+
+.default-message button{
+    padding: 12px 27px;
+    background-color: inherit;
+    border: 1px solid var(--dark-main-color);
+    color: var(--light-text-color);
+    margin-top: 30px;
+    font-size: 15px;
+}
+
+/*Document Card*/
+
 .handshake-icon{
     font-size: 30px;
     color: var(--light-text-color2);
@@ -13,27 +61,29 @@
     border-radius: 3px;
     display: none;
     position: absolute;
-    right: 50%;
+    right: 20px;
 }
 
 .handshake-icon:hover + .show-collaborate{
     display: block;
 }
 
-.home-container{
-    margin-top: 50px;
-}
-
-.documents{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 30px;
+.collaboration-no{
+    position: absolute;
+    bottom: 30px;
+    right: -10px;
+    background-color: green;
+    width: 17px;
+    height: 17px;
+    padding: 1px;
+    font-size: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
 }
 
 .document-card{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     border: 1px solid var(--dark-main-color);
     padding: 10px;
     transition-duration: .3s;
@@ -43,13 +93,23 @@
     background-color: #222;    
 }
 
-.document-card .right{
+.document-card .bottom{
     position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.document-card span{
+    font-size: smaller;
+    color: var(--main-color);
 }
 
 .document-card .date{
     color: var(--light-text-color);
 }
+
+/* New Document Btn */
 
 .new-doc-btn{
     font-size: 50px;
@@ -79,4 +139,71 @@
 .hide-btn{
     opacity: 0;
     bottom: -73px;
+}
+
+/* Document-Modal */
+
+.new-document-modal, .add-collaborator-modal{
+    width: 86%;
+    max-width: 400px;
+    background-color: #222;
+    border-radius: 6px;
+    padding: 30px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition-duration: .4s;
+    opacity: 0;
+    z-index: 4;
+}
+
+.show-modal{
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.new-document-modal .top, .add-collaborator-modal .top{
+    margin-bottom: 30px;
+}
+
+.new-document-modal form input, .add-collaborator-modal form input{
+    width: 100%;
+    background-color: var(--foreground-color);
+    border: none;
+    padding: 10px;
+    margin-bottom: 30px;
+    color: var(--light-text-color);
+}
+
+.new-document-modal .buttons, .add-collaborator-modal .buttons{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.new-document-modal button, .add-collaborator-modal button{
+    display: block;
+    width: fit-content;
+    padding: 10px 30px;
+    background-color: var(--background-color);
+    border-radius: 1.5rem;
+    color: var(--light-text-color2);
+    border: 1px solid var(--dark-main-color);
+    transition-duration: .3s;
+}
+
+.new-document-modal button:active, .add-collaborator-modal button:active{
+    transform: scale(.9);
+}
+
+.new-document-modal button[type='submit'], .add-collaborator-modal button[type='submit']{
+    background-color: var(--main-color);
+    color: var(--text-color);
+    border: none;
+}
+
+/* Add Collaborator */
+.add-collaborator-modal .top> h5{
+    color: var(--light-text-color);
+    margin-top: 20px;
 }

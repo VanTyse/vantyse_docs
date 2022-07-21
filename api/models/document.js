@@ -7,11 +7,21 @@ const documentSchema = new mongoose.Schema({
         required : true
     },
     data : Object,
-    doumentName: {
+    documentName: {
         type: String,
         required: [true, 'please give the document a name'],
-        default: 'Untitled Document'
-    }
-})
+        default: "Untitle Document"
+    },
+    creator: {
+        type: mongoose.Types.ObjectId,
+        ref: 'User',
+        required: [true, 'please tells us who is creating this document'],
+    },
+    collaborators: [{
+        type: mongoose.Types.ObjectId,
+        ref: 'User',
+        required: [true, 'please tells us who is creating this document']
+    }]
+}, {timestamps: true})
 
 module.exports = mongoose.model('document', documentSchema)

@@ -2,10 +2,10 @@ import React, {useContext} from 'react'
 import {Link} from 'react-router-dom'
 import './Header.css'
 import Button from '../Button/button'
-import { Context } from '../../context/context';
+import { UserContext } from '../../context/context';
 
 function Header() {
-  const {user} = useContext(Context)
+  const {user} = useContext(UserContext)
   return (
     <header>
         <Link to='/' style={{textDecoration: 'none', color: 'inherit'}}>

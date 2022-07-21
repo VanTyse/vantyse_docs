@@ -1,11 +1,24 @@
-import React, {useState, useCallback, useEffect} from 'react'
+import React, {useState, useCallback, useEffect, useContext} from 'react'
 import {useParams} from 'react-router-dom'
 import {io} from 'socket.io-client'
 import Quill from 'quill'
 import 'quill/dist/quill.snow.css'
+import { UserContext, DocumentContext } from '../../context/context';
 
 function TextEditor() {
     const {id : documentID} = useParams()
+
+    const {user} = useContext(UserContext)
+    const [userID, setUserID] = useState()
+
+    const {name, dispatch} = useContext(DocumentContext)
+    const [documentName, setDocumentName] = useState()
+
+    useEffect(() => {
+        setUserID(user._id)
+        setDocumentName(name)
+    }, [user, name])
+
     const [socket, setSocket] = useState()
     const [quill, setQuill] = useState()
 
@@ -75,12 +88,15 @@ function TextEditor() {
     useEffect(() => {
         if (socket == null || quill == null)return
 
-        socket.once('load-document', document => {
+        socket.once('load-document', (document, enable, documentName) => {
+            dispatch({type: 'ADD_NAME', payload: documentName})
+            dispatch({type: 'SET_USER_INTERACTION', payload: enable})
             quill.setContents(document)
-            quill.enable()
+            if(enable) quill.enable()
         })
 
-        socket.emit('get-document', documentID)
+        socket.emit('get-document', documentID, userID, documentName)
+
     }, [socket, quill, documentID])
 
     useEffect(() => {

@@ -3,7 +3,7 @@ import Button from '../../components/Button/button';
 import { Link, useNavigate } from 'react-router-dom';
 import './Auth.css'
 import {useLocation} from 'react-router-dom';
-import { Context } from '../../context/context';
+import { UserContext } from '../../context/context';
 import { LoginFailure, LoginStart, LoginSuccess } from '../../context/actions';
 import axios from 'axios'
 import Alerts from '../../components/Alert/Alerts';
@@ -14,7 +14,7 @@ function Auth() {
     const [isLoginOrRegister, setIsLoginOrRegister] = useState(!value);
     const [alert, setAlert] = useState({show : false, msg : null, type : null});
 
-    const {dispatch} = useContext(Context)
+    const {dispatch} = useContext(UserContext)
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -69,14 +69,12 @@ function RegisterForm({setIsLoginOrRegister, getUser, setAlert}){
         const url = '/api/v1/auth/register';
         try {
             const response = await axios.post(url, {email, password})
-            console.log('here');
             setAlert({show : true, msg : "login successful", type : 'success'})
-            console.log('here1');
             const {token, userID} = response.data;
             localStorage.setItem('token', token)
             localStorage.setItem('userID', userID)
             await getUser()
-            const s = setTimeout(() => navigate(-1), 2000)
+            const s = setTimeout(() => navigate('/'), 2000)
         } catch (error) {
             console.log(error.response);
             if (error.response.data.error.code == 11000 && error.response.data.error.keyPattern.email == 1){
@@ -113,7 +111,7 @@ function RegisterForm({setIsLoginOrRegister, getUser, setAlert}){
 }
 
 function LoginForm({setIsLoginOrRegister, getUser, setAlert}) {
-    const {dispatch} = useContext(Context)
+    const {dispatch} = useContext(UserContext)
     const navigate = useNavigate()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')

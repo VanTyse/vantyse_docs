@@ -1,16 +1,15 @@
 import React, {useEffect, useContext} from 'react'
 import {useNavigate} from 'react-router-dom';
-import {v4 as uuidv4} from 'uuid'
-import { Context } from '../../context/context';
+import { UserContext } from '../../context/context';
 
 
 function Redirect() {
-    const {user} = useContext(Context)
+    const {user} = useContext(UserContext)
     const navigate = useNavigate()
 
     useEffect(() => {
         if (user){
-            navigate(`/documents/${uuidv4()}`)  
+            navigate(`/`)  
         }
         else{
             navigate(`/auth`)  

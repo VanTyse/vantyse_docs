@@ -2,14 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import { ContextProvider } from './context/context'
+import { UserContextProvider, DocumentContextProvider } from './context/context'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ContextProvider>
-      <App />
-    </ContextProvider>
+    <UserContextProvider>
+      <DocumentContextProvider>
+        <App />
+      </DocumentContextProvider>
+    </UserContextProvider>
   </React.StrictMode>
 );
 

@@ -1,4 +1,4 @@
-const LoginReducer = (state, action) => {
+export const LoginReducer = (state, action) => {
     switch(action.type){
         case 'LOGIN_START' :
             return {
@@ -23,4 +23,20 @@ const LoginReducer = (state, action) => {
     }
 }
 
-export default LoginReducer
+export const DocumentReducer = (state, action) => {
+    if (action.type === 'ADD_NAME'){
+        return {
+            ...state,
+            name: action.payload,
+        }
+    }
+    else if(action.type === 'SET_USER_INTERACTION'){
+        return {
+            ...state,
+            canEdit : action.payload,
+        }
+    }
+    else{
+        return state
+    }
+}

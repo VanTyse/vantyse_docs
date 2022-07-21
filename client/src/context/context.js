@@ -1,18 +1,32 @@
 import { createContext, useReducer } from "react"
-import LoginReducer from "./reducers"
+import {LoginReducer, DocumentReducer} from "./reducers"
 
-const INITIAL_STATE = {
+const LOGIN_INITIAL_STATE = {
     user : JSON.parse(localStorage.getItem('user')) || null,
     isFetching : false,
     error : false,
 }
 
-export const Context = createContext()
+export const UserContext = createContext()
 
-export const ContextProvider = ({children}) => {
-    const [state, dispatch] = useReducer(LoginReducer, INITIAL_STATE)
+export const UserContextProvider = ({children}) => {
+    const [state, dispatch] = useReducer(LoginReducer, LOGIN_INITIAL_STATE)
 
-    return <Context.Provider value={{...state, dispatch}}>
+    return <UserContext.Provider value={{...state, dispatch}}>
         {children}
-    </Context.Provider>
+    </UserContext.Provider>
+}
+
+const DOCUMENT_INITIAL_STATE = {
+    name: null,
+    canEdit : false
+}
+
+export const DocumentContext = createContext();
+
+export const DocumentContextProvider = ({children}) => {
+    const [state, dispatch] = useReducer(DocumentReducer, DOCUMENT_INITIAL_STATE)
+    return <DocumentContext.Provider value={{...state, dispatch}}>
+        {children}
+    </DocumentContext.Provider>
 }
