@@ -37,7 +37,7 @@ function TextEditor() {
     const SAVE_INTERVAL = 2000;
 
     useEffect(() => {
-        const s = io('http://localhost:3001');
+        const s = io('https://vantyse-docs-server.herokuapp.com');
         setSocket(s)
 
         return () => {
