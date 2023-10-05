@@ -14,7 +14,6 @@ function Header() {
     justifyContent: "space-between",
     alignItems: "center",
     padding: "10px 20px",
-    border: "1px solid red",
   };
   return (
     <header style={HEADER_STYLE}>
