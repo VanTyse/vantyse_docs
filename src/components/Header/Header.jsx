@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 import Button from "../Button/button";
@@ -6,8 +6,18 @@ import { UserContext } from "../../context/context";
 
 function Header() {
   const { user } = useContext(UserContext);
+  const HEADER_STYLE = {
+    boxShadow: "0 0 5px 0 var(--light-text-color2)",
+    zIndex: "10",
+    display: "flex",
+    width: "100%",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "10px 20px",
+    border: "1px solid red",
+  };
   return (
-    <header className="header-style">
+    <header style={HEADER_STYLE}>
       <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
         <div className="header-brand">
           <div className="icon">

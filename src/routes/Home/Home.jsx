@@ -185,7 +185,7 @@ function AddCollaboratorModal({
     try {
       setAlertMessage("Adding...");
       const token = localStorage.getItem("token");
-      const { data } = await axios.patch(
+      await axios.patch(
         `${BASE_URL}/api/v1/documents/${documentID}`,
         { collaboratorEmail: email },
         {
@@ -195,11 +195,11 @@ function AddCollaboratorModal({
         }
       );
       setAlertMessage("Successful");
-      const s = setTimeout(() => setShowModal(false), 2000);
+      setTimeout(() => setShowModal(false), 2000);
     } catch (error) {
       if (error.response.data.error.msg === "user for collabo doesn't exist") {
         setAlertMessage(error.response.data.error.msg);
-        const s = setTimeout(() => setAlertMessage("Re-enter Email"), 2000);
+        setTimeout(() => setAlertMessage("Re-enter Email"), 2000);
         setEmail("");
       } else {
         setAlertMessage("Something went wrong");

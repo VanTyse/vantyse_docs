@@ -86,7 +86,7 @@ function RegisterForm({ setIsLoginOrRegister, getUser, setAlert }) {
       localStorage.setItem("userID", userID);
 
       await getUser();
-      const s = setTimeout(() => navigate("/"), 2000);
+      setTimeout(() => navigate("/"), 2000);
     } catch (error) {
       console.log(error);
       // if (
@@ -170,7 +170,7 @@ function LoginForm({ setIsLoginOrRegister, getUser, setAlert }) {
       localStorage.setItem("token", token);
       localStorage.setItem("userID", userID);
       await getUser();
-      const s = setTimeout(() => navigate(-1), 2000);
+      setTimeout(() => navigate(-1), 2000);
     } catch (error) {
       dispatch(LoginFailure());
       localStorage.removeItem("user");
