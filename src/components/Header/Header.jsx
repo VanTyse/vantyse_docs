@@ -7,7 +7,7 @@ import { UserContext } from "../../context/context";
 function Header() {
   const { user } = useContext(UserContext);
   return (
-    <header>
+    <header className="header-style">
       <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
         <div className="header-brand">
           <div className="icon">
